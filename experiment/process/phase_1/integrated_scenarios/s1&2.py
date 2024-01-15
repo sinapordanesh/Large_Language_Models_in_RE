@@ -30,7 +30,7 @@ def get_gpt4_response(prompt):
         return "Timeout or error occurred." 
 
 # Read the CSV file
-df = pd.read_csv('./phase_1.csv')
+df = pd.read_csv('./phase_1_data.csv')
 
 # Create a new column for responses
 df['fv_naming'] = ''
@@ -50,8 +50,8 @@ for index, row in df.iterrows():
             response = "Timeout occurred."
     
     df.at[index, 'fv_naming'] = response
-    print(f"{(counter / 10) * 100}%")
+    print(f"{(counter / 70) * 100}%")
     counter+=1
 
 # Write the updated dataframe to a new CSV file
-df.to_csv('p1_s3.csv', index=False)
+df.to_csv('s1&2_results.csv', index=False)
