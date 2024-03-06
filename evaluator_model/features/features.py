@@ -33,7 +33,7 @@ from tqdm.notebook import tqdm
 from joblib import Parallel, delayed
 from typing import List, Dict
 
-def calculate_features(code: str) -> Dict:
+def calculate_features(item: Dict[int, str]) -> Dict:
     """
     Calculates a set of features for the given source file.
 
@@ -43,10 +43,15 @@ def calculate_features(code: str) -> Dict:
 
     # with open(path, 'r', errors='ignore') as file:
     #     code = file.read()
+    
+    repo_id = item['repo_id']
+    code = item['code']
 
     features = {}
 
     try:
+        
+        features['repo_id'] = repo_id
 
         if not isinstance(code, str):
             # Return a marker or an empty dictionary to indicate this sample cannot be processed
@@ -92,7 +97,7 @@ def calculate_features(code: str) -> Dict:
         return {'error': 'General error'}
 
 
-def calculate_features_for_files(codes: List[str], n_jobs: int = 4) -> List[Dict]:
+def calculate_features_for_files(codes_with_ids: List[Dict[int, str]], n_jobs: int = 4) -> List[Dict]:
     """
     Calculates sets of features for the given source files.
 
@@ -106,15 +111,8 @@ def calculate_features_for_files(codes: List[str], n_jobs: int = 4) -> List[Dict
 
     # return features
     
-    # Initialize a tqdm notebook progress bar
-    with tqdm(total=len(codes), desc='Calculating features') as progress_bar:
-        with Parallel(n_jobs=n_jobs) as pool:
-            features = pool(
-                delayed(calculate_features)(code, progress_bar) for code in codes
-            )
-
-    # with Parallel(n_jobs=n_jobs) as pool:
-    #     features = pool(delayed(calculate_features)(code) for code in codes)
+    with Parallel(n_jobs=n_jobs) as pool:
+        features = pool(delayed(calculate_features)(item) for item in codes_with_ids)
             
     return features
 
