@@ -113,8 +113,10 @@ def calculate_features_for_files(codes_with_ids: List[Dict[int, str]], n_jobs: i
     
     with Parallel(n_jobs=n_jobs) as pool:
         features = pool(delayed(calculate_features)(item) for item in codes_with_ids)
+        
+    filtered_features = [feature for feature in features if 'error' not in feature]
             
-    return features
+    return filtered_features
 
 
 def build_sample(sample: Dict, feature_to_id: Dict) -> np.array:
