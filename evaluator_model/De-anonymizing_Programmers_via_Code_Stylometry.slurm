@@ -8,7 +8,7 @@
 #SBATCH --mem=32gb                      # Job memory request
 #SBATCH --time=6:00:00                 # Time limit hrs:min:sec
 #SBATCH --mail-type=END,FAIL            # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=saman.pordanesh@ucalgary.ca  # Where to send mail  
+#SBATCH --mail-user=e@c.ca  # Where to send mail  
 
 source activate .venv                # Activate your environment
 
