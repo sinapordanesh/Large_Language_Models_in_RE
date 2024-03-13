@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=ml_job_test_dataset_code               # Job name
-#SBATCH --output=ml_job_test_dataset_code.txt             # Standard output and error log
+#SBATCH --output=ml_job_test_dataset_code_2.txt             # Standard output and error log
 #SBATCH --partition=single              # Partition name
 #SBATCH --nodes=1                       # Run all processes on a single node    
 #SBATCH --ntasks=1                      # Run a single task        
@@ -8,9 +8,17 @@
 #SBATCH --mem=32gb                      # Job memory request
 #SBATCH --time=6:00:00                 # Time limit hrs:min:sec
 #SBATCH --mail-type=END,FAIL            # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=e@c.ca  # Where to send mail  
+#SBATCH --mail-user=myhomeqrc@gmail.com  # Where to send mail  
 
 source activate .venv                # Activate your environment
 
 # Execute your script
 python De-anonymizing_Programmers_via_Code_Stylometry.py
+
+# USAGE:
+# $sbatch your-file.slum
+# $squeue -u your_username
+# $squeue -j jobID
+# $scontrol show job jobID
+# $squeue -p partition_name
+# 28702837

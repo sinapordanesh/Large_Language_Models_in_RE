@@ -38,7 +38,7 @@ class NumKeyword(Feature):
 
         features = {}
         for key, value in count.items():
-            features[f'ln(num_{key}/length)'] = np.log(value / file_length)
+            features[f'ln(num_{key}/length)'] = np.log((value + 1e-10) / (file_length + 1e-10))
 
         return features
 
@@ -47,7 +47,7 @@ class NumTokens(Feature):
     @staticmethod
     def calculate(tokens: List[JavaToken], file_length: int) -> Dict:
         num_identifiers = len(identifiers(tokens))
-        value = np.log(num_identifiers / file_length)
+        value = np.log((num_identifiers + 1e-10) / (file_length + 1e-10))
         return {'ln(numTokens/length)': value}
 
 
@@ -56,7 +56,7 @@ class NumComments(Feature):
     def calculate(code: str) -> Dict:
         lines = non_empty_lines(code)
         num_comments = sum(line.strip()[:2] == '//' for line in lines)
-        value = np.log(num_comments / len(code))
+        value = np.log((num_comments + 1e-10) / (len(code) + 1e-10))
         return {'ln(numComments/length)': value}
 
 
@@ -64,7 +64,7 @@ class NumLiterals(Feature):
     @staticmethod
     def calculate(tokens: List[JavaToken], file_length: int) -> Dict:
         num_literals = len(literals(tokens))
-        value = np.log(num_literals / file_length)
+        value = np.log((num_literals + 1e-10) / (file_length + 1e-10))
         return {'ln(numLiterals/length)': value}
 
 
@@ -72,7 +72,7 @@ class NumKeywords(Feature):
     @staticmethod
     def calculate(tokens: List[JavaToken], file_length: int) -> Dict:
         num_literals = len(keywords(tokens))
-        value = np.log(num_literals / file_length)
+        value = np.log((num_literals + 1e-10) / (file_length + 1e-10))
         return {'ln(numKeywords/length)': value}
 
 
@@ -80,7 +80,7 @@ class NumFunctions(Feature):
     @staticmethod
     def calculate(tree: Node, file_length: int) -> Dict:
         num_functions = get_nodes_count(tree, MethodDeclaration)
-        value = np.log(num_functions / file_length)
+        value = np.log((num_functions + 1e-10) / (file_length + 1e-10))
         return {'ln(numFunctions/length)': value}
 
 
@@ -88,7 +88,7 @@ class NumTernary(Feature):
     @staticmethod
     def calculate(tree: Node, file_length: int) -> Dict:
         num_ternary = get_nodes_count(tree, TernaryExpression)
-        value = np.log(num_ternary / file_length)
+        value = np.log((num_ternary + 1e-10) / (file_length + 1e-10))
         return {'ln(numTernary/length)': value}
 
 

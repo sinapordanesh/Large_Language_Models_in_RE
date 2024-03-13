@@ -63,3 +63,5 @@ zipp==2.0.1
 requests
 dask[distributed]
 seaborn
+desk
+fsspec>=0.3.3
