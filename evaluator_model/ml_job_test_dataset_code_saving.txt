@@ -47,6 +47,7 @@
 <<<<<<<<<<<<<<<<<<<PART 7 FINISHED>>>>>>>>>>>>>>>>>>>>>>>>
 Test Accuracy: 0.9516
 <<<<<<<<<<<<<<<<<<<PART 8 FINISHED>>>>>>>>>>>>>>>>>>>>>>>>
+Model saved successfully to models/test_dataset_model.pkl
 CV Accuracy Scores: [0.94548526 0.94871007 0.95124386 0.95101351 0.93903563]
 CV Accuracy: 0.95 (+/- 0.01)
               precision    recall  f1-score   support
@@ -836,8 +837,8 @@ CV Accuracy: 0.95 (+/- 0.01)
 weighted avg       0.95      0.95      0.95     13005
 
 Traceback (most recent call last):
-  File "De-anonymizing_Programmers_via_Code_Stylometry.py", line 405, in <module>
-    roc_auc = roc_auc_score(y_test_binarized, y_pred_proba, multi_class="ovr")
+  File "De-anonymizing_Programmers_via_Code_Stylometry.py", line 428, in <module>
+    from sklearn.model_selection import train_test_split
   File "/home/saman.pordanesh/Large_Language_Models_in_RE/evaluator_model/.venv/lib64/python3.6/site-packages/sklearn/metrics/_ranking.py", line 395, in roc_auc_score
     sample_weight=sample_weight)
   File "/home/saman.pordanesh/Large_Language_Models_in_RE/evaluator_model/.venv/lib64/python3.6/site-packages/sklearn/metrics/_base.py", line 120, in _average_binary_score

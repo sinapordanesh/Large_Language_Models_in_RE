@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=ml_job_test_dataset_code               # Job name
-#SBATCH --output=ml_job_test_dataset_code_2.txt             # Standard output and error log
+#SBATCH --output=ml_job_train_dataset_code_saving.txt             # Standard output and error log
 #SBATCH --partition=single              # Partition name
 #SBATCH --nodes=1                       # Run all processes on a single node    
 #SBATCH --ntasks=1                      # Run a single task        
@@ -21,4 +21,4 @@ python De-anonymizing_Programmers_via_Code_Stylometry.py
 # $squeue -j jobID
 # $scontrol show job jobID
 # $squeue -p partition_name
-# 28702837
+# 28775899

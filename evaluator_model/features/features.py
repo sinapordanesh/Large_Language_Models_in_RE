@@ -62,7 +62,7 @@ def calculate_features(item: Dict[int, str]) -> Dict:
         tree = javalang.parse.parse(code)
 
         # LEXICAL FEATURES
-        features.update(WordUnigramTF.calculate(tokens))
+        # features.update(WordUnigramTF.calculate(tokens))
         features.update(NumKeyword.calculate(tokens, file_length))
         features.update(NumTokens.calculate(tokens, file_length))
         features.update(NumLiterals.calculate(tokens, file_length))
@@ -85,8 +85,8 @@ def calculate_features(item: Dict[int, str]) -> Dict:
 
         # SYNTACTIC FEATURES
         features.update(MaxDepthASTNode.calculate(tree))
-        features.update(ASTNodeBigramsTF.calculate(tree))
-        features.update(ASTNodeTypesTF.calculate(tree))
+        # features.update(ASTNodeBigramsTF.calculate(tree))
+        # features.update(ASTNodeTypesTF.calculate(tree))
         features.update(JavaKeywords.calculate(tokens))
 
         return features
