@@ -28,7 +28,7 @@ warnings.filterwarnings('ignore')
 
 dataset = pd.read_csv("data/java_train_dataset_code.csv")
 print(dataset.info())
-
+print(dataset.head())
 
 # In[3]:
 
